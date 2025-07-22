@@ -4,22 +4,12 @@
 #include <stdarg.h>
 #include <limits.h>
 
-int _printf(const char *,...);
-
-typedef struct type {
-	char letter;
-	void (*p)(va_list);
-} type_t;
-
-#include <unistd.h>
-#include <stdarg.h>
+int _printf(const char *format, ...);
 
 typedef struct type
 {
 	char letter;
 	void (*p)(va_list);
 } type_t;
-
-int _printf(const char *format, ...);
 
 #endif
