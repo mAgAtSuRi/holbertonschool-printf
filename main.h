@@ -9,7 +9,7 @@ int _printf(const char *format, ...);
 typedef struct type
 {
 	char letter;
-	void (*p)(va_list);
+	int (*p)(va_list);
 } type_t;
 
 #endif
