@@ -23,6 +23,12 @@ int print_s(va_list args)
 	int i = 0;
 
 	s = va_arg(args, char *);
+	if (s == NULL)
+	{
+		write(1, "(null)", 6);
+		return (1);
+	}
+
 	while (s[i])
 	{
 		write(1, &s[i], 1);
@@ -83,6 +89,7 @@ int _printf(const char *format, ...)
 					write(1, &format[i], 1);
 					write(1, &format[i + 1], 1);
 					i += 2;
+					char_num += 2;
 				}
 			}
 		}
