@@ -36,7 +36,7 @@ void print_s(va_list args)
  */
 int _printf(const char *format, ...)
 {
-	int i = 0; int j;
+	int i = 0, j, char_known;
 	char percentage = '%';
 	type_t types[] = {
 	{'c', print_c},
@@ -51,8 +51,13 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
+			char_known = 0;
+
 			if (format[i + 1] == '%')
+			{
 				write(1, &percentage, 1);
+				i += 2;
+			}
 			else
 			{
 				j = 0;
@@ -62,18 +67,26 @@ int _printf(const char *format, ...)
 					if (format[i + 1] == types[j].letter)
 					{
 						types[j].p(args);
-						i++;
+						i += 2;
+						char_known = 1;
 						break;
 					}
-					else if (types[j].letter == 0)
-						write(1, "Error", 5);
 					j++;
+				}
+
+				if (char_known == 0)
+				{
+					write(1, &format[i], 1);
+					write(1, &format[i + 1], 1);
+					i += 2;
 				}
 			}
 		}
 		else
+		{
 			write(1, &format[i], 1);
-		i++;
+			i++;
+		}
 	}
 
 	return(i);
