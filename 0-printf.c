@@ -4,19 +4,20 @@
  * print_c - prints a character
  * @va_list: list of arguments
  */
-void print_c(va_list args)
+int print_c(va_list args)
 {
 	char c;
 
 	c = (char) va_arg(args, int);
 	write(1, &c, 1);
+	return (1);
 }
 
 /**
  * print_s - prints a string
  * @va_list: list of arguments
  */
-void print_s(va_list args)
+int print_s(va_list args)
 {
 	char *s;
 	int i = 0;
@@ -27,6 +28,8 @@ void print_s(va_list args)
 		write(1, &s[i], 1);
 		i++;
 	}
+
+	return (i);
 }
 /**
  * _printf - Prints a string that can handle char/string variable
@@ -36,7 +39,7 @@ void print_s(va_list args)
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, j, char_known;
+	int i = 0, j, char_known, char_num = 0;
 	char percentage = '%';
 	type_t types[] = {
 	{'c', print_c},
@@ -57,6 +60,7 @@ int _printf(const char *format, ...)
 			{
 				write(1, &percentage, 1);
 				i += 2;
+				char_num++;
 			}
 			else
 			{
@@ -66,7 +70,7 @@ int _printf(const char *format, ...)
 				{
 					if (format[i + 1] == types[j].letter)
 					{
-						types[j].p(args);
+						char_num += types[j].p(args);
 						i += 2;
 						char_known = 1;
 						break;
@@ -86,8 +90,9 @@ int _printf(const char *format, ...)
 		{
 			write(1, &format[i], 1);
 			i++;
+			char_num++;
 		}
 	}
 
-	return(i);
+	return(char_num);
 }
