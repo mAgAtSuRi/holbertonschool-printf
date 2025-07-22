@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * print_c - prints a character
  * @va_list: list of arguments
@@ -55,6 +56,7 @@ int _printf(const char *format, ...)
 			else
 			{
 				j = 0;
+
 				while (types[j].letter != 0)
 				{
 					if (format[i + 1] == types[j].letter)
@@ -64,7 +66,7 @@ int _printf(const char *format, ...)
 						break;
 					}
 					else if (types[j].letter == 0)
-						write(1, "error", 5);
+						write(1, "Error", 5);
 					j++;
 				}
 			}
@@ -74,5 +76,5 @@ int _printf(const char *format, ...)
 		i++;
 	}
 
-	return (i);
+	return(i);
 }

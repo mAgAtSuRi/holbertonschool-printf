@@ -11,6 +11,15 @@ typedef struct type {
 	void (*p)(va_list);
 } type_t;
 
+#include <unistd.h>
+#include <stdarg.h>
 
+typedef struct type
+{
+	char letter;
+	void (*p)(va_list);
+} type_t;
+
+int _printf(const char *format, ...);
 
 #endif
