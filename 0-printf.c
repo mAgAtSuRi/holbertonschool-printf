@@ -34,8 +34,19 @@ int print_s(va_list args)
 		write(1, &s[i], 1);
 		i++;
 	}
-
 	return (i);
+}
+
+/**
+ * print_num - print numbers
+ * @va_list: list of arguments
+ */
+int print_num(va_list args)
+{
+	int d;
+	d = va_arg(args, int);
+	write(1, &d, 1);
+	return (4);
 }
 
 int check_known(int n, char c0, char c1, int *i)
@@ -50,6 +61,7 @@ int check_known(int n, char c0, char c1, int *i)
 	else
 		return (0);
 }
+
 /**
  * _printf - Prints a string that can handle char/string variable
  * @format: the string to print
@@ -63,6 +75,8 @@ int _printf(const char *format, ...)
 	type_t types[] = {
 	{'c', print_c},
 	{'s', print_s},
+	{'d', print_num},
+	{'i', print_num},
 	{0, NULL}
 	};
 	va_list args;
@@ -86,7 +100,6 @@ int _printf(const char *format, ...)
 			else
 			{
 				j = 0;
-
 				while (types[j].letter != 0)
 				{
 					if (format[i + 1] == types[j].letter)
@@ -108,6 +121,5 @@ int _printf(const char *format, ...)
 			char_num++;
 		}
 	}
-
 	return(char_num);
 }
