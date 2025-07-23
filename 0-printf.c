@@ -51,7 +51,8 @@ int _printf(const char *format, ...)
 			else
 			{j = 0;
 				while (types[j].letter != 0)
-				{if (format[i + 1] == types[j].letter)
+				{
+					if (format[i + 1] == types[j].letter)
 					{char_num += types[j].p(args);
 						i += 2;
 						char_known = 1;
@@ -62,7 +63,6 @@ int _printf(const char *format, ...)
 		else
 		{write(1, &format[i], 1);
 			i++;
-			char_num++; }
-	}
-	return(char_num);
+			char_num++; } }
+	return (char_num);
 }
