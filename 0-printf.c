@@ -46,7 +46,7 @@ int print_num(va_list args)
 	int d;
 	d = va_arg(args, int);
 	write(1, &d, 1);
-	return (1);
+	return (4);
 }
 
 /**
