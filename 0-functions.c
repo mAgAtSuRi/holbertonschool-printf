@@ -76,5 +76,5 @@ int print_num(va_list args)
 		tab[count_num - 1 - i] = reverse_tab[i];
 		write(1, &tab[count_num - 1 - i], 1);
 	}
-	return (count_num * 4);
+	return (count_num);
 }
