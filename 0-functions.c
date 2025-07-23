@@ -2,7 +2,9 @@
 
 /**
  * print_c - prints a character
- * @va_list: list of arguments
+ * @args: character to print
+ *
+ * Return: 1 because one character
  */
 int print_c(va_list args)
 {
@@ -15,7 +17,9 @@ int print_c(va_list args)
 
 /**
  * print_s - prints a string
- * @va_list: list of arguments
+ * @args: string to print
+ *
+ * Return: Number of characters in the string
  */
 int print_s(va_list args)
 {
@@ -39,7 +43,9 @@ int print_s(va_list args)
 
 /**
  * print_num - print numbers
- * @va_list: list of arguments
+ * @args: Numbers to print
+ *
+ * Return: Number of figures in the number
  */
 int print_num(va_list args)
 {
@@ -67,7 +73,7 @@ int print_num(va_list args)
 		if (d > 0)
 			count_num++;
 		d = d / 10;
-	}	
+	}
 
 	if (count_num == 0)
 		return (0);
