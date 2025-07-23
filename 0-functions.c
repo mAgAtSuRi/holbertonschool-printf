@@ -45,7 +45,7 @@ int print_num(va_list args)
 {
 	char tab[12];
 	char reverse_tab[12];
-	int d, i, count_num = 0;
+	int d, i, count_num = 0, num_negative = 0;
 
 	d = va_arg(args, int);
 
@@ -58,7 +58,7 @@ int print_num(va_list args)
 	{
 		write(1, "-", 1);
 		d = -d;
-		count_num++;
+		num_negative++;
 	}
 
 	for (i = 0; d > 0; i++)
@@ -76,5 +76,5 @@ int print_num(va_list args)
 		tab[count_num - 1 - i] = reverse_tab[i];
 		write(1, &tab[count_num - 1 - i], 1);
 	}
-	return (count_num);
+	return (count_num + num_negative);
 }
