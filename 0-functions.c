@@ -45,9 +45,9 @@ int print_num(va_list args)
 {
 	char tab[12];
 	char reverse_tab[12];
-	long int d, i, count_num = 0, num_negative = 0;
+	int d, i, count_num = 0, num_negative = 0;
 
-	d = va_arg(args, long int);
+	d = va_arg(args, int);
 
 	if (d == 0)
 	{
@@ -57,10 +57,7 @@ int print_num(va_list args)
 	else if (d < 0)
 	{
 		write(1, "-", 1);
-		if (d == INT_MIN)
-			d = INT_MAX;
-		else
-			d = -d;
+		d = -d;
 		num_negative++;
 	}
 
