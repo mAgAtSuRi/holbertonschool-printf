@@ -37,6 +37,19 @@ int print_s(va_list args)
 
 	return (i);
 }
+
+int check_known(int n, char c0, char c1, int *i)
+{
+	if (n == 0)
+	{
+		write(1, &c0, 1);
+		write(1, &c1, 1);
+		*i += 2;
+		return (2);
+	}
+	else
+		return (0);
+}
 /**
  * _printf - Prints a string that can handle char/string variable
  * @format: the string to print
@@ -85,14 +98,7 @@ int _printf(const char *format, ...)
 					}
 					j++;
 				}
-
-				if (char_known == 0)
-				{
-					write(1, &format[i], 1);
-					write(1, &format[i + 1], 1);
-					i += 2;
-					char_num += 2;
-				}
+				char_num += check_known(char_known, format[i], format[i + 1], &i);
 			}
 		}
 		else
