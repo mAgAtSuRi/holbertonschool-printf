@@ -26,9 +26,9 @@ int print_s(va_list args)
 	if (s == NULL)
 	{
 		write(1, "(null)", 6);
-		return (1);
+		return (6);
 	}
-	
+
 	while (s[i])
 	{
 		write(1, &s[i], 1);
@@ -36,14 +36,15 @@ int print_s(va_list args)
 	}
 	return (i);
 }
+
 /**
- * print_num - print nombers
+ * print_num - print numbers
  * @va_list: list of arguments
  */
 int print_num(va_list args)
 {
 	int d;
-	d = (int) va_arg(args, int);
+	d = va_arg(args, int);
 	write(1, &d, 1);
 	return (1);
 }
@@ -56,7 +57,7 @@ int print_num(va_list args)
  */
 int _printf(const char *format, ...)
 {
-	int i = 0; int j; int char_known, count = 0;
+	int i = 0, j, char_known, char_num = 0;
 	char percentage = '%';
 	type_t types[] = {
 	{'c', print_c},
@@ -73,11 +74,19 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == '%')
+			char_known = 0;
+
+			if (format[i + 1] == '\0')
+			{
+				write(1, &percentage, 1);
+				char_num++;
+				i++;
+			}
+			else if (format[i + 1] == '%')
 			{
 				write(1, &percentage, 1);
 				i += 2;
-				count++;
+				char_num++;
 			}
 			else
 			{
@@ -87,30 +96,29 @@ int _printf(const char *format, ...)
 				{
 					if (format[i + 1] == types[j].letter)
 					{
-						char_known = 1;
-						types[j].p(args);
+						char_num += types[j].p(args);
 						i += 2;
+						char_known = 1;
 						break;
 					}
 					j++;
 				}
 				if (char_known == 0)
-				{ 
+				{
 					write(1, &format[i], 1);
 					write(1, &format[i + 1], 1);
 					i += 2;
-					count += 2;
+					char_num += 2;
 				}
-				
 			}
 		}
 		else
 		{
 			write(1, &format[i], 1);
 			i++;
-			count++;
+			char_num++;
 		}
 	}
 
-	return(count);
+	return(char_num);
 }
