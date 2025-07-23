@@ -26,7 +26,7 @@ int print_s(va_list args)
 	if (s == NULL)
 	{
 		write(1, "(null)", 6);
-		return (1);
+		return (6);
 	}
 
 	while (s[i])
