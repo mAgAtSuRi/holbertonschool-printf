@@ -1,65 +1,14 @@
 #include "main.h"
 
-/**
- * print_c - prints a character
- * @va_list: list of arguments
- */
-int print_c(va_list args)
-{
-	char c;
-
-	c = (char) va_arg(args, int);
-	write(1, &c, 1);
-	return (1);
-}
-
-/**
- * print_s - prints a string
- * @va_list: list of arguments
- */
-int print_s(va_list args)
-{
-	char *s;
-	int i = 0;
-
-	s = va_arg(args, char *);
-	if (s == NULL)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-	return (i);
-}
-
-/**
- * print_num - print numbers
- * @va_list: list of arguments
- */
-int print_num(va_list args)
-{
-	int d;
-	d = va_arg(args, int);
-	write(1, &d, 1);
-	return (4);
-}
-
-int check_known(int n, char c0, char c1, int *i)
+void check_known(int n, char c0, char c1, int *i, int *charnum)
 {
 	if (n == 0)
 	{
 		write(1, &c0, 1);
 		write(1, &c1, 1);
 		*i += 2;
-		return (2);
+		*charnum += 2;
 	}
-	else
-		return (0);
 }
 
 /**
@@ -111,7 +60,7 @@ int _printf(const char *format, ...)
 					}
 					j++;
 				}
-				char_num += check_known(char_known, format[i], format[i + 1], &i);
+				check_known(char_known, format[i], format[i + 1], &i, &char_num);
 			}
 		}
 		else
