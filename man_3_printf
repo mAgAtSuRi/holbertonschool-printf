@@ -3,13 +3,14 @@
 _printf \- custom print_f function
 .SH SYNOPSIS
 .B #include "main.h"
-.B  int _printf(char *format, ...);
+
+.B  int _printf(const char *format, ...);
 .SH DESCRIPTION
 .B _printf
-print the output to stdout
+Writes formatted output
 
 .B format
-string to print, can contain the following format specifiers:
+String to print, can contain the following format specifiers:
 
 .B %c
 Prints a single character.
@@ -27,5 +28,5 @@ The number of characters printed.
 
 If the last character is a %, return -1.
 .SH AUTHORS
-LEVY Esteban
-MARTINEZ Tristan
+Esteban LEVY
+Tristan MARTINEZ
