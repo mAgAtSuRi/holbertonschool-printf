@@ -1,0 +1,31 @@
+.TH _PRINTF 3
+.SH NAME
+_printf \- custom print_f function
+.SH SYNOPSIS
+.B #include "main.h"
+.B  int _printf(char *format, ...);
+.SH DESCRIPTION
+.B _printf
+print the output to stdout
+
+.B format
+string to print, can contain the following format specifiers:
+
+.B %c
+Prints a single character.
+
+.B %s
+Prints a string.
+
+.B %d or %i
+Prints an int.
+
+.B %%
+Prints a single %.
+.SH RETURN
+The number of characters printed.
+
+If the last character is a %, return -1.
+.SH AUTHORS
+LEVY Esteban
+MARTINEZ Tristan
