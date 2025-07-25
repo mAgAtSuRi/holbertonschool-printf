@@ -52,7 +52,7 @@ int print_num(va_list args)
 	char tab[12];
 	char reverse_tab[12];
 	int d, i, count_num = 0, num_negative = 0;
-
+	unsigned int k;
 	d = va_arg(args, int);
 
 	if (d == 0)
@@ -63,16 +63,17 @@ int print_num(va_list args)
 	else if (d < 0)
 	{
 		write(1, "-", 1);
-		d = -d;
+		k = -d;
 		num_negative++;
 	}
-
-	for (i = 0; d > 0; i++)
+	else
+		k = d;
+	for (i = 0; k > 0; i++)
 	{
-		reverse_tab[i] = d % 10 + '0';
-		if (d > 0)
+		reverse_tab[i] = k % 10 + '0';
+		if (k > 0)
 			count_num++;
-		d = d / 10;
+		k = k / 10;
 	}
 
 	if (count_num == 0)
