@@ -63,6 +63,8 @@ int main(void)
 - **main.c**: Used to test various functionalities of `_printf`.
 `.
 
+## Image
+!(images/flowchart.png)
 
 ## Authors
 
