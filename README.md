@@ -1,3 +1,7 @@
+## 🔧 Organigramme de la fonction `_printf`
+
+![Diagramme printf](assets/Diagramme%20printf.drawio.png)
+
 # holbertonschool-printf
 
 Group project to recreate the `printf` function.
